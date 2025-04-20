@@ -1,4 +1,4 @@
-[![Foto Preview](preview/n930.avif)](https://project-000-930.vercel.app/)
+[![Foto Preview](preview/n930.avif)](https://20essentials.github.io/project-000-930/)
 
 <div align="center" style="display: flex; justify-content: center;">
   <a  href="https://github.com/20essentials/project-000-929" target="_blank">&#8592;</a>
