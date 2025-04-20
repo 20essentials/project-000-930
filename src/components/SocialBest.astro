@@ -1,0 +1,189 @@
+---
+import SectionContainer from "./SectionContainer.astro"
+import TiktokVideo from "./TiktokVideo.astro"
+import Icon from "./ui/Icon.astro"
+import Subtitle from "./Subtitle.astro"
+
+const VIDEOS = [
+  {
+    videoId: "7222709244125007109",
+    thumbnailUrl: "/img/thumbnails/ibai.webp",
+    title: "La relación de Ibai con Marcos",
+  },
+  {
+    videoId: "7258016065563807003",
+    thumbnailUrl: "/img/thumbnails/jijantes.webp",
+    title: "Fichaje del nuevo reportero de Jijantes",
+  },
+  {
+    videoId: "7343332399662533920",
+    thumbnailUrl: "/img/thumbnails/midudev.webp",
+    title: "Fichajes de la web de La Velada junto a Midudev",
+  },
+  {
+    videoId: "7265231719068880160",
+    thumbnailUrl: "/img/thumbnails/cristinini.webp",
+    title: "Ganadora de la Beca Infojobs Cristinini",
+  },
+  {
+    videoId: "7285448407756393761",
+    thumbnailUrl: "/img/thumbnails/marcos.webp",
+    title: "Entrevista a Marcos de Olañeta",
+  },
+] as const
+---
+
+<SectionContainer class="px-0">
+  <div class="flex items-center justify-between pb-6 md:pb-12">
+    <Subtitle class="!pb-0">Trabaja con los mejores</Subtitle>
+
+    <div class="hidden md:flex items-center gap-x-4">
+      <button
+        class="bg-[#E2E2E5] text-[#636365] opacity-45 p-1 rounded-full enabled:hover:scale-110 transition-all enabled:active:scale-100"
+        id="left-button"
+        disabled="true"
+        aria-label="Ir al elemento anterior"
+      >
+        <Icon name="leftarrow" />
+      </button>
+      <button
+        class="bg-[#E2E2E5] text-[#636365] p-1 rounded-full enabled:hover:scale-110 transition-all enabled:active:scale-100"
+        id="right-button"
+        aria-label="Ir al siguiente elemento"
+      >
+        <Icon name="rightarrow" />
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="relative carousel-container -mr-4 pr-4 md:mr-0 md:pr-0"
+    id="carousel-container"
+    style="--left-opacity: 0; --right-opacity: 1;"
+  >
+    <div
+      class="flex overflow-scroll custom-scrollbar gap-x-4 md:gap-x-8 snap-mandatory snap-x -mr-4 pr-4 md:mr-0 md:pr-0"
+      id="carousel"
+    >
+      {
+        VIDEOS.map(({ videoId, thumbnailUrl, title }) => (
+          <TiktokVideo
+            videoId={videoId}
+            thumbnailUrl={thumbnailUrl}
+            title={title}
+          />
+        ))
+      }
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .carousel-container:before {
+    background-image: linear-gradient(to left, transparent, #fff);
+    content: "";
+    height: 570px;
+    left: 0;
+    opacity: var(--left-opacity);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    width: 64px;
+    z-index: 10;
+  }
+
+  .carousel-container:after {
+    background-image: linear-gradient(to right, transparent, #fff);
+    content: "";
+    height: 570px;
+    opacity: var(--right-opacity);
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    width: 64px;
+    z-index: 10;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-container:before {
+      opacity: 0 !important;
+    }
+
+    .carousel-container:after {
+      opacity: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  const rightButton = document.querySelector(
+    "#right-button"
+  ) as HTMLButtonElement
+  const leftButton = document.querySelector("#left-button") as HTMLButtonElement
+  const carousel = document.querySelector("#carousel") as HTMLDivElement
+  const carouselContainer = document.querySelector(
+    "#carousel-container"
+  ) as HTMLDivElement
+
+  leftButton.addEventListener("click", () => {
+    carousel.scrollTo({
+      left: carousel.scrollLeft - 320,
+      behavior: "smooth",
+    })
+  })
+
+  rightButton.addEventListener("click", () => {
+    carousel.scrollTo({
+      left: carousel.scrollLeft + 320,
+      behavior: "smooth",
+    })
+  })
+
+  carousel.addEventListener("scroll", () => {
+    const tolerance = 2 // 0 + 2px to account for floating point errors
+
+    const updateButtonState = (button: HTMLButtonElement, disable: boolean) => {
+      button.classList.toggle("opacity-45", disable)
+      button.disabled = disable
+    }
+
+    const updateOpacity = (property: string, value: string) => {
+      carouselContainer.style.setProperty(property, value)
+    }
+
+    if (carousel.scrollLeft <= tolerance) {
+      updateButtonState(leftButton, true)
+    } else {
+      updateButtonState(leftButton, false)
+    }
+
+    if (
+      carousel.scrollLeft + carousel.clientWidth >=
+      carousel.scrollWidth - tolerance
+    ) {
+      updateButtonState(rightButton, true)
+      updateOpacity("--right-opacity", "0")
+    } else {
+      updateButtonState(rightButton, false)
+      updateOpacity("--right-opacity", "1")
+    }
+
+    if (carousel.scrollLeft > tolerance) {
+      updateOpacity("--left-opacity", "1")
+    } else {
+      updateOpacity("--left-opacity", "0")
+    }
+  })
+</script>

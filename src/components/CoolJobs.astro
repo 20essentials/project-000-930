@@ -1,0 +1,84 @@
+---
+import CoolJobCard from "@components/CoolJobCard.astro"
+import type { CoolJobs } from "@types"
+import CoolJobBackground from "@components/CoolJobBackground.astro"
+import CoolJobBrand from "@components/CoolJobBrand.astro"
+
+const coolJobs: CoolJobs[] = [
+  {
+    image: "/img/cool-jobs/port-aventura.webp",
+    title: "Probador de montañas rusas",
+    brand: "Port Aventura World",
+    section_id: "lp-pom-box-499",
+  },
+  {
+    image: "/img/cool-jobs/maxibon.webp",
+    title: "Catadora de helados",
+    brand: "Maxibon",
+    section_id: "lp-pom-box-515",
+  },
+  {
+    image: "/img/cool-jobs/wizink-center.webp",
+    title: "Probadora de conciertos",
+    brand: "WiZink Center",
+    section_id: "lp-pom-box-528",
+  },
+  {
+    image: "/img/cool-jobs/dominos.webp",
+    title: "Catadora de pizzas",
+    brand: "Domino's",
+    section_id: "lp-pom-box-534",
+  },
+  {
+    image: "/img/cool-jobs/btravel.webp",
+    title: "Probadora de viajes",
+    brand: "B travel",
+    section_id: "lp-pom-box-584",
+  },
+  {
+    image: "/img/cool-jobs/grefusa.webp",
+    title: "Probadora de snacks",
+    brand: "Grefusa",
+    section_id: "lp-pom-box-522",
+  },
+  {
+    image: "/img/cool-jobs/visa.webp",
+    title: "Probador de pagos con el móvil",
+    brand: "Visa",
+    section_id: "lp-pom-box-598",
+  },
+]
+---
+
+<section class="w-full mx-auto lg:max-w-7xl">
+  <article
+    class="p-4 pb-6 flex flex-col gap-6 bg-gradient-to-r from-[#FFDEDA] to-[#FCEDEB] md:py-[70px] md:px-10 md:items-center md:relative md:rounded-2xl md:mx-4"
+  >
+    <CoolJobBackground />
+
+    <h2
+      class="text-3xl font-semibold text-center text-ij-red tracking-separated lg:text-4xl lg:z-10 lg:mb-4"
+    >
+      Los trabajos más cool
+    </h2>
+
+    <div
+      class="flex items-center px-16 pb-6 -mx-4 overflow-x-auto no-scrollbar gap-7 snap-x snap-mandatory max-w-[1536px] md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 lg:p-0 lg:m-0 lg:z-10 md:justify-items-center xl:grid-cols-4"
+    >
+      {
+        coolJobs.map(({ image, title, brand, section_id }) => (
+          <CoolJobCard
+            image={image}
+            title={title}
+            brand={brand}
+            id={section_id}
+          />
+        ))
+      }
+
+      <CoolJobBrand class="hidden md:flex" />
+    </div>
+
+    <CoolJobBrand class="md:hidden min-w-[328px]" />
+  </article>
+</section>

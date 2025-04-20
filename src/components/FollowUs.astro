@@ -1,0 +1,72 @@
+---
+import FollowUsLink from "@components/FollowUsLink.astro";
+import Icon from "./ui/Icon.astro";
+
+const hoverSocialNetworks = "md:transition-transform md:hover:scale-110";
+const hoverStoreApps = "md:transition-opacity md:duration-150 md:ease-in-out md:hover:opacity-90";
+---
+
+
+<section class="flex flex-col items-center justify-between md:flex-row md:p-10">
+  <article
+    class="w-full flex items-center justify-center gap-2 py-4 flex-wrap md:justify-start"
+  >
+    <p class="text-xl tracking-[0.38px] leading-6 font-semibold">
+      ¡Síguenos!
+    </p>
+
+    <span class="flex items-center gap-2">
+      <FollowUsLink
+        href="https://www.tiktok.com/@infojobs"
+        class={hoverSocialNetworks}
+        socialPlatform="Visítanos en TikTok."
+      >
+        <Icon name="tiktok" />
+      </FollowUsLink>
+
+      <FollowUsLink
+        href="https://www.youtube.com/InfoJobs"
+        class={hoverSocialNetworks}
+        socialPlatform="Visítanos en YouTube."
+      >
+        <Icon name="youtube" />
+      </FollowUsLink>
+
+      <FollowUsLink
+        href="https://x.com/InfoJobs"
+        class={hoverSocialNetworks}
+        socialPlatform="Visítanos en X."
+      >
+        <Icon name="twitter" />
+      </FollowUsLink>
+
+      <FollowUsLink
+        href="https://www.facebook.com/InfoJobs"
+        class={hoverSocialNetworks}
+        socialPlatform="Visítanos en Facebook."
+      >
+        <Icon name="facebook" />
+      </FollowUsLink>
+    </span>
+  </article>
+
+  <article
+    class="w-full flex items-center justify-center gap-4 py-4 flex-wrap md:flex-nowrap md:p-0 md:gap-2 md:justify-end"
+  >
+    <FollowUsLink
+      href="https://infojobs.go.link/?adj_t=1b8zxouv_1bnixj2z"
+      class={hoverStoreApps}
+      socialPlatform="Visítanos en Google."
+    >
+     <Icon name="googleplay" />
+    </FollowUsLink>
+
+    <FollowUsLink
+      href="https://infojobs.onelink.me/2882600328/rjh2wn2f"
+      class={hoverStoreApps}
+      socialPlatform="Visítanos en la AppStore."
+    >
+      <Icon name="appstore" />
+    </FollowUsLink>
+  </article>
+</section>

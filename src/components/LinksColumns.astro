@@ -1,0 +1,136 @@
+---
+const linksInfo = [
+  {
+    title: "Nosotros",
+    links: [
+      {
+        label: "Ayuda",
+        href: "https://ayuda.infojobs.net/hc/es",
+        showOnMobile: true,
+      },
+      {
+        label: "Seguridad",
+        href: "https://nosotros.infojobs.net/infojobs-seguridad",
+      },
+      {
+        label: "Condiciones legales",
+        href: "https://www.infojobs.net/lex.xhtml",
+        showOnMobile: true,
+      },
+      {
+        label: "Política de privacidad",
+        href: "https://www.infojobs.net/privacy-policy/extended.xhtml",
+      },
+
+      {
+        label: "Uso del servicio",
+        href: "https://www.infojobs.net/rules-and-services.xhtml",
+      },
+      {
+        label: "Política de cookies",
+        href: "https://www.infojobs.net/lex.xhtml#cookies-policy",
+      },
+      {
+        label: "Gestión de cookies",
+        href: "https://www.figma.com/exit?url=javascript%3Avoid(null)%3B",
+      },
+    ],
+  },
+  {
+    title: "Sobre InfoJobs",
+    links: [
+      {
+        label: "InfoJobs hoy",
+        href: "https://nosotros.infojobs.net/",
+      },
+      {
+        label: "Trabaja con nosotros",
+        href: "https://www.infojobs.net/candidate/candidate-login/candidate-login.xhtml?error=caducado&dgv=8615867714346349222",
+      },
+      {
+        label: "Ofertas de empleo",
+        href: "https://www.infojobs.net/ofertas-empleo",
+      },
+    ],
+  },
+  {
+    title: "+ InfoJobs",
+    links: [
+      {
+        label: "InfoJobs Awards",
+        href: "https://awards.infojobs.net/",
+      },
+      {
+        label: "InfoJobs Academy",
+        href: "https://infojobsacademy.com/",
+      },
+      {
+        label: "Orientación laboral",
+        href: "https://orientacion-laboral.infojobs.net/",
+      },
+      {
+        label: "InfoJobs Formación",
+        href: "https://formacion.infojobs.net/",
+      },
+      {
+        label: "Blog empresas",
+        href: "https://recursos-humanos.infojobs.net/",
+      },
+      {
+        label: "Offerte di lavoro in Italia",
+        href: "https://www.infojobs.it/",
+      },
+    ],
+  },
+  {
+    title: "Prensa",
+    links: [
+      {
+        label: "Indicadores de InfoJobs",
+        href: "https://nosotros.infojobs.net/indicadores-infojobs",
+      },
+      {
+        label: "Notas de prensa",
+        href: "https://nosotros.infojobs.net/prensa/notas-prensa",
+      },
+      {
+        label: "Contacto de prensa",
+        href: "https://nosotros.infojobs.net/contacto-prensa/contacto-de-prensa",
+      },
+    ],
+  },
+]
+---
+
+<div
+  class="px-[40px] items-center md:justify-between md:items-start flex flex-col md:flex-row"
+>
+  {
+    linksInfo.map(({ title, links }, index) => {
+      return (
+        <div class={`${index === 0 ? "" : "hidden sm:block"}`}>
+          <h2 class="text-black font-semibold text-[18px] hidden md:block mb-2">
+            {title}
+          </h2>
+
+          <ul class="flex flex-row  md:flex-col underline md:no-underline gap-4 md:gap-0">
+            {links.map(({ label, href, showOnMobile }) => {
+              return (
+                <li
+                  class:list={[
+                    `mb-2 hover:underline hover:underline-offset-[3px]`,
+                    showOnMobile ? "" : "hidden md:block",
+                  ]}
+                >
+                  <a href={href} class="text-[14px] leading-6" target="_blank" rel="noopener noreferrer" aria-label={label}>
+                    {label}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )
+    })
+  }
+</div>

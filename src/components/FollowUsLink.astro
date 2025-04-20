@@ -1,0 +1,13 @@
+---
+const { href, socialPlatform } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={Astro.props.class}
+  aria-label={socialPlatform}
+>
+  <slot />
+</a>

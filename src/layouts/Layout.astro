@@ -1,0 +1,114 @@
+---
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Infojobs Landing Practice</title>
+    <meta
+      name="description"
+      content="Usa InfoJobs e impulsa tu carrera trabajando en una empresa líder"
+    />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta
+      property="twitter:image"
+      content="https://primer-trabajo.infojobs.net/og.jpg"
+    />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="Encuentra tu Primer Trabajo en InfoJobs"
+    />
+    <meta
+      property="twitter:description"
+      content="Usa InfoJobs e impulsa tu carrera trabajando en una empresa líder"
+    />
+
+    <meta
+      property="og:image"
+      content="https://primer-trabajo.infojobs.net/og.jpg"
+    />
+    <meta property="og:site_name" content="InfoJobs.net" />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Usa InfoJobs e impulsa tu carrera trabajando en una empresa líder"
+    />
+    <meta property="og:url" content="https://primer-trabajo.infojobs.net/" />
+
+    <link rel="preload" as="image" href="/hero-pattern.webp" />
+    <link rel="shortcut icon" href="./assets/favicon.webp" type="image/x-icon">
+
+    <script
+      is:inline
+      defer
+      src="https://components.infojobs.com/widgets/downloader.js"></script>
+
+    <script
+      defer
+      is:inline
+      src="https://unpkg.com/@s-ui/ij-segment-wrapper@2.6.0/umd/index.js"
+    ></script>
+    <script is:inline defer>
+      analytics.track("Landing Page Viewed", {
+        page_name: "landing_infojobs",
+        site: "infojobs.net",
+        section: "candidate",
+        channel: "landing_captacion_ontarget",
+        platform: "web",
+        vertical: "jobs",
+        page_type: "landing",
+      })
+    </script>
+  </head>
+</html>
+<body>
+  <Header />
+  <main class="flex flex-col gap-20 md:gap-24">
+    <slot />
+  </main>
+  <div id="cmpContainer"></div>
+  <Footer />
+</body>
+
+<script is:inline defer>
+  const DEFAULT_TRACKING = {
+    channel: "landing_captacion_ontarget",
+    page_detail: "landing_infojobs",
+    platform: "web",
+    section: "candidate",
+    site: "infojobs.net",
+    vertical: "jobs",
+  }
+
+  const elementsToTrack = document.querySelectorAll("[data-track]")
+
+  elementsToTrack.forEach((el) => {
+    el.addEventListener("click", (event) => {
+      const { track } = event.currentTarget.dataset
+      const trackingData = { ...DEFAULT_TRACKING, label: track }
+      window.analytics.track("Button Clicked", trackingData)
+    })
+  })
+</script>
+
+<style is:global>
+  input:focus-visible,
+  select:focus-visible {
+    outline: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

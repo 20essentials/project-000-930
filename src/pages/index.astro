@@ -1,0 +1,33 @@
+---
+import BentoInfo from "@components/BentoInfo.astro";
+import CoolJobs from "@components/CoolJobs.astro";
+import HeroSearch from "@components/HeroSearch.astro";
+import SocialBest from "@components/SocialBest.astro";
+import PreFooter from "@components/PreFooter.astro";
+import InfographicModal from "@components/InfographicModal.astro";
+import StandsInterviews from "@components/StandsInterviews.astro";
+
+import Layout from "@layouts/Layout.astro";
+
+import EmergentPositions from "@components/EmergentPositions.astro";
+
+import YourNextJob from "@components/YourNextJob.astro";
+
+---
+
+<Layout title="InfoJobs - ¡Encuentra tu primer empleo!">
+  <HeroSearch />
+  <BentoInfo />
+  <SocialBest />
+  <CoolJobs />
+  <PreFooter />
+  <InfographicModal />
+
+  <!-- Infografías -->
+  <StandsInterviews infographicId="no-experience" />
+
+  <EmergentPositions infographicId="emergent-positions" />
+
+  <YourNextJob infographicId="selection-process" />
+
+</Layout>
