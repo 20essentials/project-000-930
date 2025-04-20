@@ -45,3 +45,4 @@ export const DICTIONARY_TYPE = {
   WORKDAY: 'workday',
   WRITING_LEVEL: 'writing-level'
 } as const
+
